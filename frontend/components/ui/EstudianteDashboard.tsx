@@ -6,7 +6,8 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { sendQuestion, uploadImage } from '@/lib/api'
-import { Calculator, ImageIcon, Loader2 } from 'lucide-react'
+import { Calculator, ImageIcon, Loader2, LogOut } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 
 export function EstudianteDashboard() {
   const [pregunta, setPregunta] = useState('')
@@ -14,6 +15,7 @@ export function EstudianteDashboard() {
   const [imagen, setImagen] = useState<File | null>(null)
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
+  const router = useRouter()
 
   const handlePregunta = async () => {
     if (!pregunta.trim()) {
@@ -66,13 +68,17 @@ export function EstudianteDashboard() {
     }
   }
 
+  const handleLogout = () => {
+    router.push('/app/page') // Redirige a la página principal
+  }
+
   return (
     <div className="max-w-4xl mx-auto space-y-8">
       <div className="space-y-4">
         <div className="space-y-2">
           <h2 className="text-2xl font-semibold">Asistente Matemático</h2>
           <p className="text-sm text-muted-foreground">
-            Escribe...
+            Escribe tu pregunta o fórmula matemática.
           </p>
           <Textarea
             placeholder="Ejemplo: ¿Cuál es la raíz cuadrada de 16? o 12 * 4 = 48"
@@ -145,8 +151,15 @@ export function EstudianteDashboard() {
             <p className="whitespace-pre-wrap">{respuesta}</p>
           </div>
         )}
+
+        <Button 
+          onClick={handleLogout} 
+          className="w-full sm:w-auto mt-4"
+        >
+          <LogOut className="w-4 h-4 mr-2" />
+          Cerrar Sesión
+        </Button>
       </div>
     </div>
   )
 }
-
