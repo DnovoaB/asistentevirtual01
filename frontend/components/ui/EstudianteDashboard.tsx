@@ -17,7 +17,7 @@ export function EstudianteDashboard() {
 
   const handlePregunta = async () => {
     if (!pregunta.trim()) {
-      setError('Por favor, escribe una pregunta matemática.')
+      setError('Por favor, escribe una pregunta válida.')
       return
     }
 
@@ -72,7 +72,7 @@ export function EstudianteDashboard() {
         <div className="space-y-2">
           <h2 className="text-2xl font-semibold">Asistente Matemático</h2>
           <p className="text-sm text-muted-foreground">
-            Escribe una operación matemática o pregunta relacionada con matemáticas
+            Escribe...
           </p>
           <Textarea
             placeholder="Ejemplo: ¿Cuál es la raíz cuadrada de 16? o 12 * 4 = 48"
@@ -111,7 +111,7 @@ export function EstudianteDashboard() {
               accept="image/*"
               onChange={handleImagenChange}
               disabled={isLoading}
-              className="flex-1"
+              className="flex-1 cursor-pointer"
             />
             <Button 
               onClick={handleImagenSubmit}

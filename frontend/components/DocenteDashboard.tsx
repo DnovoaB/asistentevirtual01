@@ -51,7 +51,7 @@ export function DocenteDashboard() {
           <Input
             type="file"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => setArchivo(e.target.files?.[0] || null)}
-            className="flex-1"
+            className="flex-1 cursor-pointer"
           />
         </div>
 
